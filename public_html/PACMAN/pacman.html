@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!--  <meta http-equiv="refresh" content="1" />   -->
+    </head>
+    <body>
+        <div id="tauler" style="font-family: Courier New; font-size: 20px; font-weight: bold;line-height: 15px"></div>
+
+
+
+    </body> 
+    <footer>
+
+        <script>
+            //declarem el mapa del pacman
+            var mapa = new Array(30);
+
+            mapa[00] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+            mapa[01] = [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0];
+            mapa[02] = [0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0];
+            mapa[03] = [0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0];
+            mapa[04] = [0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0];
+            mapa[05] = [0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0];
+            mapa[06] = [0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0];
+            mapa[07] = [0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0];
+            mapa[08] = [0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0];
+            mapa[09] = [0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0];
+            mapa[10] = [0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0];
+            mapa[11] = [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0];
+            mapa[12] = [0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0];
+            mapa[13] = [0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0];
+            mapa[14] = [0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 0];
+            mapa[15] = [0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0];
+            mapa[16] = [0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0];
+            mapa[17] = [0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0];
+            mapa[18] = [0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0];
+            mapa[19] = [0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 0];
+            mapa[20] = [0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0];
+            mapa[21] = [0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 0];
+            mapa[22] = [0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0];
+            mapa[23] = [0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 0];
+            mapa[24] = [0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0];
+            mapa[25] = [0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0];
+            mapa[26] = [0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0];
+            mapa[27] = [0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0];
+            mapa[28] = [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0];
+            mapa[29] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+            function pintarweb() {
+                var fila = "";
+                for (var i = 0; i < mapa.length; i++) {
+                    fila += "<br>";
+                    for (var c = 0; c < mapa[i].length; c++) {
+                        if (mapa[i][c] === 0) {
+                            fila += "X";
+                        } else //if(mapa[i][c]===1){
+                            fila += "&nbsp;";
+                        //}
+                        ////else if(mapa[i][c]==="f"){
+                        //    fila += "F";
+                        // } else {
+                        //     fila += "@";
+                        // }
+
+                    }
+                }
+
+
+                document.getElementById("tauler").innerHTML = fila;
+            }
+            function pintar() {
+                var fila = "";
+                for (var i = 0; i < mapa.length; i++) {
+                    fila += "\n";
+                    for (var c = 0; c < mapa[i].length; c++) {
+                        if (mapa[i][c] === 0) {
+                            fila += "X";
+                        } else //if(mapa[i][c]===1){
+                            fila += " ";
+                        //}
+                        ////else if(mapa[i][c]==="f"){
+                        //    fila += "F";
+                        // } else {
+                        //     fila += "@";
+                        // }
+
+                    }
+                }
+
+                console.log(fila);
+
+            }
+            //declaro el jugador
+            var dadesJuga = ["X", "Y", "DIRE", "TECLA"];
+            var jugador = [dadesJuga];
+            //declaro els fantasmes
+            var fantasmas = new Array(3)
+            var fantasma = new Array(2)
+            fantasma[0] = ["X", "Y", "DIRE"];
+            fantasma[1] = ["X", "Y", "DIRE"];
+            fantasma[2] = ["X", "Y", "DIRE"];
+
+//COMENSEM A FER EL RANDOM
+            for (var i = 0; i < fantasmas.length; i++) {
+                for (var i = 0; i < fantasma.length; i++) {
+
+
+                    var num = Math.floor((Math.random() * (31 - 1)) + 1);
+
+
+                }
+            }
+            
+            //CRIDEM AL MAPA PER LA WEB I PER LA CONSOLA
+            
+            pintarweb();
+            pintar();
+
+        </script>
+    </footer>
+
+</html>
