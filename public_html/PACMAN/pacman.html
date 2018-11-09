@@ -13,7 +13,7 @@ and open the template in the editor.
         <!--  <meta http-equiv="refresh" content="1" />   -->
     </head>
     <body>
-        <div id="tauler" style="font-family: Courier New; font-size: 20px;color:grey; font-weight: bold;line-height: 15px"></div>
+        <div id="tauler" style="font-family: Courier New; font-size: 20px;color:grey; font-weight: bold;line-height: 6px"></div>
         <div id="fan"></div>
 
 
@@ -56,24 +56,25 @@ and open the template in the editor.
             mapa[28] = [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0];
             mapa[29] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
+
+
+//a=setInterval.....//a.clearInterval()  deixa dexecutar
             function pintarweb() {
                 var fila = "";
                 for (var i = 0; i < mapa.length; i++) {
                     fila += "<br>";
                     for (var c = 0; c < mapa[i].length; c++) {
                         if (mapa[i][c] === 0) {
-                            fila += "X";
+                            fila += "<img src='ic.png' height='12' width='12'>";
                         } else if (mapa[i][c] === 1) {
                             fila += "&nbsp;";
                         } else if (mapa[i][c] === "f") {
-                            fila += "<span style='color: red;'>F</span>";
+                            fila += "<img src='coco.gif' height='12' width='12'>";
                         } else {
-                            fila += "<span style='color: blue;'>€</span>";
+                            fila += "<img src='pacc.gif' height='12' width='12'>";
                         }
-
                     }
                 }
-
 
                 document.getElementById("tauler").innerHTML = fila;
             }
@@ -92,24 +93,17 @@ and open the template in the editor.
                         // } else {
                         //     fila += "@";
                         // }
-
                     }
                 }
-
                 console.log(fila);
-
             }
-
             function aleatorio(minimo, maximo) {
                 return Math.floor(Math.random() * ((maximo + 1) - minimo) + minimo);
             }
             //declaro el jugador
-
             var jugador = new Array(4);
             //declaro els fantasmes
-
             var fantasmas = new Array(3);
-
             for (var i = 0; i < fantasmas.length; i++) {
                 fantasmas[i] = new Array(3);
             }
@@ -122,7 +116,7 @@ and open the template in the editor.
                     do {
                         var num = aleatorio(0, 29);
                         var num2 = aleatorio(0, 29);
-                    } while (mapa[num][num2] != 1);
+                    } while (mapa[num][num2] !== 1);
                     mapa[num][num2] = "f";
 
                     fantasmas[i][0] = num;
@@ -133,20 +127,15 @@ and open the template in the editor.
 
 
             }
-
+            //posicionem el jugador
             function Jaleatori() {
-                //posicionem el jugador
-
                 do {
                     var num = aleatorio(0, 29);
                     var num2 = aleatorio(0, 29);
-                } while (mapa[num][num2] != 1);
+                } while (mapa[num][num2] !== 1);
                 jugador[0] = num;
                 jugador[1] = num2;
-
-
-
-                if (mapa[num + 1][num2] == "f" || mapa[num - 1][num2] == "f" || mapa[num][num2 + 1] == "f" || mapa[num][num2 - 1] == "f") {
+                if (mapa[num + 1][num2] === "f" || mapa[num - 1][num2] === "f" || mapa[num][num2 + 1] === "f" || mapa[num][num2 - 1] === "f") {
                     Jaleatori();
                 } else {
                     mapa[num][num2] = "J";
@@ -188,11 +177,9 @@ and open the template in the editor.
                                 }
                                 break;
                         }
-
+                        jugador[3]=direccio;
                     } while (sortir === 0);
-
                 }
-
             }
             //0=amun
             // 1= avall
@@ -245,6 +232,7 @@ and open the template in the editor.
                 }
 
             }
+            
 
             //CRIDEM AL MAPA PER LA WEB I PER LA CONSOLA
 
