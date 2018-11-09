@@ -13,7 +13,7 @@ and open the template in the editor.
         <!--  <meta http-equiv="refresh" content="1" />   -->
     </head>
     <body>
-        <div id="tauler" style="font-family: Courier New; font-size: 20px;color:grey; font-weight: bold;line-height: 6px"></div>
+        <div id="tauler" style="font-family: Courier New; font-size: 25px;color:grey; font-weight: bold;line-height: 6px"></div>
         <div id="fan"></div>
 
 
@@ -65,13 +65,13 @@ and open the template in the editor.
                     fila += "<br>";
                     for (var c = 0; c < mapa[i].length; c++) {
                         if (mapa[i][c] === 0) {
-                            fila += "<img src='ic.png' height='12' width='12'>";
+                            fila += "<img src='ic.png' height='15' width='15'>";
                         } else if (mapa[i][c] === 1) {
                             fila += "&nbsp;";
                         } else if (mapa[i][c] === "f") {
-                            fila += "<img src='coco.gif' height='12' width='12'>";
+                            fila += "<img src='coco.gif' height='15' width='15'>";
                         } else {
-                            fila += "<img src='pacc.gif' height='12' width='12'>";
+                            fila += "<img src='pacc.gif' height='15' width='15'>";
                         }
                     }
                 }
@@ -177,72 +177,163 @@ and open the template in the editor.
                                 }
                                 break;
                         }
-                        jugador[3]=direccio;
+                        jugador[3] = direccio;
                     } while (sortir === 0);
                 }
             }
-            //0=amun
-            // 1= avall
-            //  2=esquerra
-            //   3 =dreta
-
+            //0=amun  // 1= avall //  2=esquerra  //   3 =dreta
             function Fdireccio() {
                 for (var i = 0; i < fantasmas.length; i++) {
+                    Fredireccio(i);
+                }
+            }
+            function FanCruilla() {
+                for (var i = 0; i < fantasmas.length; i++) {
+                    var cont = 0;
+                    if (mapa[(fantasmas[i][0]) - 1][fantasmas[i][1]] === 1) {
+                        cont++;
+                    }
+                    if (mapa[(fantasmas[i][0]) + 1][fantasmas[i][1]] === 1) {
+                        cont++;
+                    }
+                    if (mapa[fantasmas[i][0]][(fantasmas[i][1]) - 1] === 1) {
+                        cont++;
+                    }
+                    if (mapa[fantasmas[i][0]][(fantasmas[i][1]) + 1] === 1) {
+                        cont++;
+                    }
+                    if (cont > 2) {
+                        Fredireccio(i);
+                    }
+                    comprovar(i);
+                }
+            }
+            function Fredireccio(i) {
 
-                    do {
-                        var sortir = 0;
-                        var direccio = aleatorio(0, 3);
-                        switch (direccio) {
-                            case 0:
-                                if (mapa[(fantasmas[i][0]) - 1][fantasmas[i][1]] === 0) {
-                                    sortir = 0;
-                                } else {
-                                    fantasmas[i][2] = direccio;
-                                    sortir = 1;
-                                }
-                                break;
-                            case 1:
-                                if (mapa[(fantasmas[i][0]) + 1][fantasmas[i][1]] === 0) {
-                                    sortir = 0;
-                                } else {
-                                    fantasmas[i][2] = direccio;
-                                    sortir = 1;
-                                }
-                                break;
-                            case 2:
-                                if (mapa[fantasmas[i][0]][(fantasmas[i][1]) - 1] === 0) {
-                                    sortir = 0;
-                                } else {
-                                    fantasmas[i][2] = direccio;
-                                    sortir = 1;
-                                }
-                                break;
-                            case 3:
-                                if (mapa[fantasmas[i][0]][(fantasmas[i][1]) + 1] === 0) {
-                                    sortir = 0;
-                                } else {
-                                    fantasmas[i][2] = direccio;
-                                    sortir = 1;
-                                }
-                                break;
+                do {
+                    var sortir = 0;
+                    var direccio = aleatorio(0, 3);
+                    switch (direccio) {
+                        case 0:
+                            if (mapa[(fantasmas[i][0]) - 1][fantasmas[i][1]] === 0) {
+                                sortir = 0;
+                            } else {
+                                fantasmas[i][2] = direccio;
+                                sortir = 1;
+                            }
+                            break;
+                        case 1:
+                            if (mapa[(fantasmas[i][0]) + 1][fantasmas[i][1]] === 0) {
+                                sortir = 0;
+                            } else {
+                                fantasmas[i][2] = direccio;
+                                sortir = 1;
+                            }
+                            break;
+                        case 2:
+                            if (mapa[fantasmas[i][0]][(fantasmas[i][1]) - 1] === 0) {
+                                sortir = 0;
+                            } else {
+                                fantasmas[i][2] = direccio;
+                                sortir = 1;
+                            }
+                            break;
+                        case 3:
+                            if (mapa[fantasmas[i][0]][(fantasmas[i][1]) + 1] === 0) {
+                                sortir = 0;
+                            } else {
+                                fantasmas[i][2] = direccio;
+                                sortir = 1;
+                            }
+                            break;
+                    }
+
+                } while (sortir === 0);
+
+            }
+
+            function comprovar(i) {
+
+                var direccio = fantasmas[i][2];
+                switch (direccio) {
+                    case 0:
+                        if (mapa[(fantasmas[i][0]) - 1][fantasmas[i][1]] === 0) {
+                            Fredireccio(i);
                         }
-
-                    } while (sortir === 0);
-
+                        break;
+                    case 1:
+                        if (mapa[(fantasmas[i][0]) + 1][fantasmas[i][1]] === 0) {
+                            Fredireccio(i);
+                        }
+                        break;
+                    case 2:
+                        if (mapa[fantasmas[i][0]][(fantasmas[i][1]) - 1] === 0) {
+                            Fredireccio(i);
+                        }
+                        break;
+                    case 3:
+                        if (mapa[fantasmas[i][0]][(fantasmas[i][1]) + 1] === 0) {
+                            Fredireccio(i);
+                        }
+                        break;
                 }
 
             }
-            
 
+            function moureF() {
+                for (var i = 0; i < fantasmas.length; i++) {
+
+                    var dir = fantasmas[i][2];
+                    switch (dir) {
+                        case 0:
+                            mapa[(fantasmas[i][0]) - 1][fantasmas[i][1]] = 'f';
+                            mapa[(fantasmas[i][0])][fantasmas[i][1]] = 1;
+                            
+                            fantasmas[i][0]=(fantasmas[i][0])-1;
+                            
+                            
+                            break;
+                        case 1:
+                            mapa[(fantasmas[i][0]) + 1][fantasmas[i][1]] = 'f';
+                            mapa[(fantasmas[i][0])][fantasmas[i][1]] = 1;
+                            
+                            fantasmas[i][0]=(fantasmas[i][0])+1;
+                            
+                            break;
+                        case 2:
+                            mapa[fantasmas[i][0]][(fantasmas[i][1]) - 1] = 'f';
+                            mapa[(fantasmas[i][0])][fantasmas[i][1]] =1;
+                            
+                            fantasmas[i][1]=(fantasmas[i][1]) - 1;
+                            
+                            break;
+                        case 3:
+                            mapa[fantasmas[i][0]][(fantasmas[i][1]) + 1] = 'f';
+                            mapa[(fantasmas[i][0])][fantasmas[i][1]] = 1;
+                            
+                            fantasmas[i][1]=(fantasmas[i][1]) + 1;
+                            
+                            break;
+                    }
+                    
+                }
+                FanCruilla();
+            }
             //CRIDEM AL MAPA PER LA WEB I PER LA CONSOLA
 
 
             Faleatori();
             Jaleatori();
+            Fdireccio();
             pintarweb();
             pintar();
-            Fdireccio();
-            setInterval(pintar, 1000);
+
+            setInterval(function () {
+                moureF();
+                pintarweb();
+                
+            }, 1);
+
         </script>
 
     </footer>
