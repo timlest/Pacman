@@ -9,12 +9,13 @@ and open the template in the editor.
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
 
         <!--  <meta http-equiv="refresh" content="1" />   -->
     </head>
-    <body>
+    <body id="all">
         <div id="tauler" style="font-family: Courier New; font-size: 25px;color:grey; font-weight: bold;line-height: 6px"></div>
-        <div id="fan"></div>
+        <div id="partida" ></div>
 
 
 
@@ -129,6 +130,7 @@ and open the template in the editor.
             }
             //posicionem el jugador
             function Jaleatori() {
+                jugador[3] = null;
                 do {
                     var num = aleatorio(0, 29);
                     var num2 = aleatorio(0, 29);
@@ -187,6 +189,8 @@ and open the template in the editor.
                     Fredireccio(i);
                 }
             }
+            
+            
             function FanCruilla() {
                 for (var i = 0; i < fantasmas.length; i++) {
                     var cont = 0;
@@ -208,6 +212,8 @@ and open the template in the editor.
                     comprovar(i);
                 }
             }
+            
+            
             function Fredireccio(i) {
 
                 do {
@@ -288,37 +294,144 @@ and open the template in the editor.
                         case 0:
                             mapa[(fantasmas[i][0]) - 1][fantasmas[i][1]] = 'f';
                             mapa[(fantasmas[i][0])][fantasmas[i][1]] = 1;
-                            
-                            fantasmas[i][0]=(fantasmas[i][0])-1;
-                            
-                            
+
+                            fantasmas[i][0] = (fantasmas[i][0]) - 1;
+
+
                             break;
                         case 1:
                             mapa[(fantasmas[i][0]) + 1][fantasmas[i][1]] = 'f';
                             mapa[(fantasmas[i][0])][fantasmas[i][1]] = 1;
-                            
-                            fantasmas[i][0]=(fantasmas[i][0])+1;
-                            
+
+                            fantasmas[i][0] = (fantasmas[i][0]) + 1;
+
                             break;
                         case 2:
                             mapa[fantasmas[i][0]][(fantasmas[i][1]) - 1] = 'f';
-                            mapa[(fantasmas[i][0])][fantasmas[i][1]] =1;
-                            
-                            fantasmas[i][1]=(fantasmas[i][1]) - 1;
-                            
+                            mapa[(fantasmas[i][0])][fantasmas[i][1]] = 1;
+
+                            fantasmas[i][1] = (fantasmas[i][1]) - 1;
+
                             break;
                         case 3:
                             mapa[fantasmas[i][0]][(fantasmas[i][1]) + 1] = 'f';
                             mapa[(fantasmas[i][0])][fantasmas[i][1]] = 1;
-                            
-                            fantasmas[i][1]=(fantasmas[i][1]) + 1;
-                            
+
+                            fantasmas[i][1] = (fantasmas[i][1]) + 1;
+
                             break;
                     }
-                    
+
                 }
                 FanCruilla();
             }
+//moure el jugador automatic
+            function moureJ() {
+
+                var dire = jugador[3];
+                switch (dire) {
+                    case 0:
+                        if (mapa[(jugador[0]) - 1][jugador[1]] !== 0) {
+                            jugador[2] = jugador[3];
+                        }
+
+                        break;
+                    case 1:
+                        if (mapa[(jugador[0]) + 1][jugador[1]] !== 0) {
+                            jugador[2] = jugador[3];
+                        }
+                        break;
+                    case 2:
+                        if (mapa[jugador[0]][jugador[1] - 1] !== 0) {
+                            jugador[2] = jugador[3];
+                        }
+                        break;
+                    case 3:
+                        if (mapa[jugador[0]][jugador[1] + 1] !== 0) {
+                            jugador[2] = jugador[3];
+                        }
+                        break;
+                }
+                var dir = jugador[2];
+                switch (dir) {
+                    case 0:
+                        if (mapa[(jugador[0]) - 1][jugador[1]] !== 0) {
+                            mapa[(jugador[0]) - 1][jugador[1]] = 'J';
+                            mapa[(jugador[0])][jugador[1]] = 1;
+
+                            jugador[0] = (jugador[0]) - 1;
+                        }
+
+                        break;
+                    case 1:
+                        if (mapa[(jugador[0]) + 1][jugador[1]] !== 0) {
+                            mapa[(jugador[0]) + 1][jugador[1]] = 'J';
+                            mapa[jugador[0]][jugador[1]] = 1;
+
+                            jugador[0] = jugador[0] + 1;
+                        }
+                        break;
+                    case 2:
+                        if (mapa[jugador[0]][jugador[1] - 1] !== 0) {
+                            mapa[jugador[0]][jugador[1] - 1] = 'J';
+                            mapa[jugador[0]][jugador[1]] = 1;
+
+                            jugador[1] = jugador[1] - 1;
+                        }
+                        break;
+                    case 3:
+                        if (mapa[jugador[0]][jugador[1] + 1] !== 0) {
+                            mapa[jugador[0]][jugador[1] + 1] = 'J';
+                            mapa[jugador[0]][jugador[1]] = 1;
+
+                            jugador[1] = jugador[1] + 1;
+                        }
+                        break;
+                }
+
+
+            }
+
+            //funcio de xocar
+            var xocat = 1;
+            var perdut="<h1 style='color: red;'>HAS PERDUT!</h1>";
+            function xoc() {
+                for (var i = 0; i < fantasmas.length; i++) {
+
+                    if (fantasmas[i][0] === jugador[0] && fantasmas[i][1] === jugador[1]) {
+                        clearInterval(loop);
+                        xocat = 0;
+                        document.getElementById("partida").innerHTML = perdut;
+                        
+                    } else if (mapa[fantasmas[i][0]][(fantasmas[i][1])] === "J") {
+                        clearInterval(loop);
+                        xocat = 0;
+                        
+                        document.getElementById("partida").innerHTML = perdut;
+                    }
+
+                }
+            }
+            //funcio de agafa les tecles
+            ////0=amun  // 1= avall //  2=esquerra  //   3 =dreta
+            var element = document.getElementById("all");
+            element.addEventListener("keydown", teclas);
+
+            function teclas(e) {
+                if (e.code === "ArrowLeft") {
+                    jugador[3] = 2;
+                } else if (e.code === "ArrowRight") {
+                    jugador[3] = 3;
+                } else if (e.code === "ArrowUp") {
+                    jugador[3] = 0;
+                } else if (e.code === "ArrowDown") {
+                    jugador[3] = 1;
+                }
+
+            }
+
+
+
             //CRIDEM AL MAPA PER LA WEB I PER LA CONSOLA
 
 
@@ -328,11 +441,20 @@ and open the template in the editor.
             pintarweb();
             pintar();
 
-            setInterval(function () {
-                moureF();
-                pintarweb();
-                
-            }, 1);
+            var loop = setInterval(function () {
+                if (xocat === 1) {
+                    moureJ();
+                    pintarweb();
+                    xoc();
+                }
+
+                if (xocat === 1) {
+                    moureF();
+
+                    pintarweb();
+                    xoc();
+                }
+            }, 200);
 
         </script>
 

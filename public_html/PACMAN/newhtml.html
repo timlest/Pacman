@@ -1,0 +1,36 @@
+function teclas(e) {
+                var tecla = e.keyCode;
+                // wasd
+                var w = 87;
+                var a = 65;
+                var s = 83;
+                var d = 68;
+                //Flechas
+                var esquerra = 37;
+                var amunt = 38;
+                var dreta = 39;
+                var avall = 40;
+
+                switch (tecla) {
+                    case w:
+                    case esquerra:
+                           jugador[3]=2;
+                     break;
+                     case a:
+                    case amunt:
+                        jugador[3]=0;
+                        break;
+                        
+                        case s:
+                    case avall:
+                        jugador[3]=1;
+                        break;
+                        
+                        case d:
+                    case dreta:
+                        jugador[3]=3;
+                        break;
+
+                }
+
+            }
