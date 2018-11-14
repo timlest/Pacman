@@ -19,6 +19,7 @@ and open the template in the editor.
             <div>
                 <div id="partida" ></div>
                 <div id="conta" ></div>
+                <div id="max"></div>
             </div>
 
         </div>
@@ -31,7 +32,8 @@ and open the template in the editor.
 
 //la funcio de tot el joc per cridarla desde el inici.
             function jugar() {
-
+                var maxi = localStorage.getItem("Maxima");
+                document.getElementById("max").innerHTML = "<h3>La puntuacio Maxima obtinguda en aquesta sesio es: " + maxi + "</h3>";
                 //cada cop que tornem a cridar a la funcio en el cas que vulguin seguir jugan aixo netejara el background color que li he posat
                 document.getElementById("cont").style.background = '';
                 document.getElementById("partida").innerHTML = '';
@@ -442,6 +444,10 @@ and open the template in the editor.
                             document.getElementById("partida").innerHTML = perdut;
                             document.getElementById("cont").style.background = 'black';
 
+                            // si la puntuacio maxima es mes petita que la puntuacio actual s'actualitza
+                            if (maxi < punt) {
+                                localStorage.setItem("Maxima", punt);
+                            }
                             clearInterval(cronometro);
                             preguntar2();
 
@@ -489,9 +495,11 @@ and open the template in the editor.
                     if (punt === 300) {
                         clearInterval(cronometro);
                         clearInterval(loop);
+
+                        localStorage.setItem("Maxima", punt);
                         xocat = 0;
                         document.getElementById("partida").innerHTML = guanyat;
-                        preguntar2();
+
 
                     }
                 }
