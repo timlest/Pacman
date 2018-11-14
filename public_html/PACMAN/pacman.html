@@ -14,447 +14,541 @@ and open the template in the editor.
         <!--  <meta http-equiv="refresh" content="1" />   -->
     </head>
     <body id="all">
-        <div id="tauler" style="font-family: Courier New; font-size: 25px;color:grey; font-weight: bold;line-height: 6px"></div>
-        <div id="partida" ></div>
+        <div id="cont">
+            <div id="tauler" ></div>
+            <div>
+                <div id="partida" ></div>
+                <div id="conta" ></div>
+            </div>
 
-
+        </div>
 
     </body> 
     <footer>
 
         <script>
-            //declarem el mapa del pacman
-            var mapa = new Array(30);
-
-            mapa[00] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-            mapa[01] = [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0];
-            mapa[02] = [0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0];
-            mapa[03] = [0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0];
-            mapa[04] = [0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0];
-            mapa[05] = [0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0];
-            mapa[06] = [0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0];
-            mapa[07] = [0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0];
-            mapa[08] = [0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0];
-            mapa[09] = [0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0];
-            mapa[10] = [0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0];
-            mapa[11] = [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0];
-            mapa[12] = [0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0];
-            mapa[13] = [0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0];
-            mapa[14] = [0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 0];
-            mapa[15] = [0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0];
-            mapa[16] = [0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0];
-            mapa[17] = [0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0];
-            mapa[18] = [0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0];
-            mapa[19] = [0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 0];
-            mapa[20] = [0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0];
-            mapa[21] = [0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 0];
-            mapa[22] = [0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0];
-            mapa[23] = [0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 0];
-            mapa[24] = [0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0];
-            mapa[25] = [0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0];
-            mapa[26] = [0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0];
-            mapa[27] = [0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0];
-            mapa[28] = [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0];
-            mapa[29] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
 
+//la funcio de tot el joc per cridarla desde el inici.
+            function jugar() {
 
-//a=setInterval.....//a.clearInterval()  deixa dexecutar
-            function pintarweb() {
-                var fila = "";
-                for (var i = 0; i < mapa.length; i++) {
-                    fila += "<br>";
-                    for (var c = 0; c < mapa[i].length; c++) {
-                        if (mapa[i][c] === 0) {
-                            fila += "<img src='ic.png' height='15' width='15'>";
-                        } else if (mapa[i][c] === 1) {
-                            fila += "&nbsp;";
-                        } else if (mapa[i][c] === "f") {
-                            fila += "<img src='coco.gif' height='15' width='15'>";
-                        } else {
-                            fila += "<img src='pacc.gif' height='15' width='15'>";
+                //cada cop que tornem a cridar a la funcio en el cas que vulguin seguir jugan aixo netejara el background color que li he posat
+                document.getElementById("cont").style.background = '';
+                document.getElementById("partida").innerHTML = '';
+
+
+                //declarem el mapa del pacman
+                var mapa = new Array(30);
+
+                mapa[00] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                mapa[01] = [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0];
+                mapa[02] = [0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0];
+                mapa[03] = [0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0];
+                mapa[04] = [0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0];
+                mapa[05] = [0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0];
+                mapa[06] = [0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0];
+                mapa[07] = [0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0];
+                mapa[08] = [0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0];
+                mapa[09] = [0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0];
+                mapa[10] = [0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0];
+                mapa[11] = [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0];
+                mapa[12] = [0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0];
+                mapa[13] = [0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0];
+                mapa[14] = [0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 0];
+                mapa[15] = [0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0];
+                mapa[16] = [0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0];
+                mapa[17] = [0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0];
+                mapa[18] = [0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0];
+                mapa[19] = [0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 0];
+                mapa[20] = [0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0];
+                mapa[21] = [0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 0];
+                mapa[22] = [0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0];
+                mapa[23] = [0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 0];
+                mapa[24] = [0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0];
+                mapa[25] = [0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0];
+                mapa[26] = [0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0];
+                mapa[27] = [0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0];
+                mapa[28] = [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0];
+                mapa[29] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+
+
+                //a=setInterval.....//a.clearInterval()  deixa dexecutar
+
+                //pintem el nostre pacman a la web
+                function pintarweb() {
+                    var fila = "";
+                    for (var i = 0; i < mapa.length; i++) {
+                        fila += "<br>";
+                        for (var c = 0; c < mapa[i].length; c++) {
+                            if (mapa[i][c] === 0) {
+                                fila += "<img src='ic.png' height='15' width='15'>";
+                            } else if (mapa[i][c] === 1) {
+                                fila += "&nbsp;";
+                            } else if (mapa[i][c] === "f") {
+                                fila += "<img src='fan.png' height='15' width='15'>";
+                            } else {
+                                fila += "<img src='pacc.gif' height='15' width='15'>";
+                            }
                         }
                     }
-                }
 
-                document.getElementById("tauler").innerHTML = fila;
-            }
-            function pintar() {
-                var fila = "";
-                for (var i = 0; i < mapa.length; i++) {
-                    fila += "\n";
-                    for (var c = 0; c < mapa[i].length; c++) {
-                        if (mapa[i][c] === 0) {
-                            fila += "X";
-                        } else //if(mapa[i][c]===1){
-                            fila += " ";
-                        //}
-                        ////else if(mapa[i][c]==="f"){
-                        //    fila += "F";
-                        // } else {
-                        //     fila += "@";
-                        // }
+                    document.getElementById("tauler").innerHTML = fila;
+                }
+                ;
+
+                //pintem el pacman a la consola
+                function pintar() {
+                    var fila = "";
+                    for (var i = 0; i < mapa.length; i++) {
+                        fila += "\n";
+                        for (var c = 0; c < mapa[i].length; c++) {
+                            if (mapa[i][c] === 0) {
+                                fila += "X";
+                            } else //if(mapa[i][c]===1){
+                                fila += " ";
+                            //}
+                            ////else if(mapa[i][c]==="f"){
+                            //    fila += "F";
+                            // } else {
+                            //     fila += "@";
+                            // }
+                        }
                     }
+                    console.log(fila);
                 }
-                console.log(fila);
-            }
-            function aleatorio(minimo, maximo) {
-                return Math.floor(Math.random() * ((maximo + 1) - minimo) + minimo);
-            }
-            //declaro el jugador
-            var jugador = new Array(4);
-            //declaro els fantasmes
-            var fantasmas = new Array(3);
-            for (var i = 0; i < fantasmas.length; i++) {
-                fantasmas[i] = new Array(3);
-            }
+                ;
 
-//COMENSEM A FER EL RANDOM del jugdor i dels fantasmasmes
-            function Faleatori() {
-
+                //funcio per conseguir un numero aleatori. entrem per parametre un numero maxim i minim.
+                function aleatorio(minimo, maximo) {
+                    return Math.floor(Math.random() * ((maximo + 1) - minimo) + minimo);
+                }
+                ;
+                //declaro el jugador
+                var jugador = new Array(4);
+                //declaro els fantasmes
+                var fantasmas = new Array(3);
                 for (var i = 0; i < fantasmas.length; i++) {
+                    fantasmas[i] = new Array(3);
+                }
 
+
+                //COMENSEM A FER el posicionament random del jugdor i dels fantasmasmes
+                function Faleatori() {
+
+                    for (var i = 0; i < fantasmas.length; i++) {
+
+                        do {
+                            var num = aleatorio(0, 29);
+                            var num2 = aleatorio(0, 29);
+                        } while (mapa[num][num2] !== 1);
+                        mapa[num][num2] = "f";
+
+                        fantasmas[i][0] = num;
+                        fantasmas[i][1] = num2;
+
+
+                    }
+
+
+                }
+                ;
+                //posicionem el jugador
+                function Jaleatori() {
+                    jugador[3] = null;
                     do {
                         var num = aleatorio(0, 29);
                         var num2 = aleatorio(0, 29);
                     } while (mapa[num][num2] !== 1);
-                    mapa[num][num2] = "f";
+                    jugador[0] = num;
+                    jugador[1] = num2;
+                    if (mapa[num + 1][num2] === "f" || mapa[num - 1][num2] === "f" || mapa[num][num2 + 1] === "f" || mapa[num][num2 - 1] === "f") {
+                        Jaleatori();
+                    } else {
+                        mapa[num][num2] = "J";
 
-                    fantasmas[i][0] = num;
-                    fantasmas[i][1] = num2;
-
-
+                        do {
+                            var sortir = 0;
+                            var direccio = aleatorio(0, 3);
+                            switch (direccio) {
+                                case 0:
+                                    if (mapa[num - 1][num2] === 0) {
+                                        sortir = 0;
+                                    } else {
+                                        jugador[2] = direccio;
+                                        sortir = 1;
+                                    }
+                                    break;
+                                case 1:
+                                    if (mapa[num + 1][num2] === 0) {
+                                        sortir = 0;
+                                    } else {
+                                        jugador[2] = direccio;
+                                        sortir = 1;
+                                    }
+                                    break;
+                                case 2:
+                                    if (mapa[num][num2 - 1] === 0) {
+                                        sortir = 0;
+                                    } else {
+                                        jugador[2] = direccio;
+                                        sortir = 1;
+                                    }
+                                    break;
+                                case 3:
+                                    if (mapa[num][num2 + 1] === 0) {
+                                        sortir = 0;
+                                    } else {
+                                        jugador[2] = direccio;
+                                        sortir = 1;
+                                    }
+                                    break;
+                            }
+                            jugador[3] = direccio;
+                        } while (sortir === 0);
+                    }
                 }
+                ;
 
+                //la direccio dels fantasmes
+                //0=amun  // 1= avall //  2=esquerra  //   3 =dreta
+                function Fdireccio() {
+                    for (var i = 0; i < fantasmas.length; i++) {
+                        Fredireccio(i);
+                    }
+                }
+                ;
 
-            }
-            //posicionem el jugador
-            function Jaleatori() {
-                jugador[3] = null;
-                do {
-                    var num = aleatorio(0, 29);
-                    var num2 = aleatorio(0, 29);
-                } while (mapa[num][num2] !== 1);
-                jugador[0] = num;
-                jugador[1] = num2;
-                if (mapa[num + 1][num2] === "f" || mapa[num - 1][num2] === "f" || mapa[num][num2 + 1] === "f" || mapa[num][num2 - 1] === "f") {
-                    Jaleatori();
-                } else {
-                    mapa[num][num2] = "J";
+                //comprovacio de si els fantasmes estan en una cruilla, en el cas que hi estiguin criden a la funcio de redireccio
+                function FanCruilla() {
+                    for (var i = 0; i < fantasmas.length; i++) {
+                        var cont = 0;
+                        if (mapa[(fantasmas[i][0]) - 1][fantasmas[i][1]] === 1) {
+                            cont++;
+                        }
+                        if (mapa[(fantasmas[i][0]) + 1][fantasmas[i][1]] === 1) {
+                            cont++;
+                        }
+                        if (mapa[fantasmas[i][0]][(fantasmas[i][1]) - 1] === 1) {
+                            cont++;
+                        }
+                        if (mapa[fantasmas[i][0]][(fantasmas[i][1]) + 1] === 1) {
+                            cont++;
+                        }
+                        if (cont > 2) {
+                            Fredireccio(i);
+                        }
+                        comprovar(i);
+                    }
+                }
+                ;
+
+                //funcio per canviar la direccio dels fantasmes
+                function Fredireccio(i) {
 
                     do {
                         var sortir = 0;
                         var direccio = aleatorio(0, 3);
                         switch (direccio) {
                             case 0:
-                                if (mapa[num - 1][num2] === 0) {
+                                if (mapa[(fantasmas[i][0]) - 1][fantasmas[i][1]] === 0) {
                                     sortir = 0;
                                 } else {
-                                    jugador[2] = direccio;
+                                    fantasmas[i][2] = direccio;
                                     sortir = 1;
                                 }
                                 break;
                             case 1:
-                                if (mapa[num + 1][num2] === 0) {
+                                if (mapa[(fantasmas[i][0]) + 1][fantasmas[i][1]] === 0) {
                                     sortir = 0;
                                 } else {
-                                    jugador[2] = direccio;
+                                    fantasmas[i][2] = direccio;
                                     sortir = 1;
                                 }
                                 break;
                             case 2:
-                                if (mapa[num][num2 - 1] === 0) {
+                                if (mapa[fantasmas[i][0]][(fantasmas[i][1]) - 1] === 0) {
                                     sortir = 0;
                                 } else {
-                                    jugador[2] = direccio;
+                                    fantasmas[i][2] = direccio;
                                     sortir = 1;
                                 }
                                 break;
                             case 3:
-                                if (mapa[num][num2 + 1] === 0) {
+                                if (mapa[fantasmas[i][0]][(fantasmas[i][1]) + 1] === 0) {
                                     sortir = 0;
                                 } else {
-                                    jugador[2] = direccio;
+                                    fantasmas[i][2] = direccio;
                                     sortir = 1;
                                 }
                                 break;
                         }
-                        jugador[3] = direccio;
-                    } while (sortir === 0);
-                }
-            }
-            //0=amun  // 1= avall //  2=esquerra  //   3 =dreta
-            function Fdireccio() {
-                for (var i = 0; i < fantasmas.length; i++) {
-                    Fredireccio(i);
-                }
-            }
-            
-            
-            function FanCruilla() {
-                for (var i = 0; i < fantasmas.length; i++) {
-                    var cont = 0;
-                    if (mapa[(fantasmas[i][0]) - 1][fantasmas[i][1]] === 1) {
-                        cont++;
-                    }
-                    if (mapa[(fantasmas[i][0]) + 1][fantasmas[i][1]] === 1) {
-                        cont++;
-                    }
-                    if (mapa[fantasmas[i][0]][(fantasmas[i][1]) - 1] === 1) {
-                        cont++;
-                    }
-                    if (mapa[fantasmas[i][0]][(fantasmas[i][1]) + 1] === 1) {
-                        cont++;
-                    }
-                    if (cont > 2) {
-                        Fredireccio(i);
-                    }
-                    comprovar(i);
-                }
-            }
-            
-            
-            function Fredireccio(i) {
 
-                do {
-                    var sortir = 0;
-                    var direccio = aleatorio(0, 3);
+                    } while (sortir === 0);
+
+                }
+                ;
+                //comprobem si la direccio en la que anem podem seguir, en el ca que sigui paret cambiem de direccio cridan a redirecio
+                function comprovar(i) {
+
+                    var direccio = fantasmas[i][2];
                     switch (direccio) {
                         case 0:
                             if (mapa[(fantasmas[i][0]) - 1][fantasmas[i][1]] === 0) {
-                                sortir = 0;
-                            } else {
-                                fantasmas[i][2] = direccio;
-                                sortir = 1;
+                                Fredireccio(i);
                             }
                             break;
                         case 1:
                             if (mapa[(fantasmas[i][0]) + 1][fantasmas[i][1]] === 0) {
-                                sortir = 0;
-                            } else {
-                                fantasmas[i][2] = direccio;
-                                sortir = 1;
+                                Fredireccio(i);
                             }
                             break;
                         case 2:
                             if (mapa[fantasmas[i][0]][(fantasmas[i][1]) - 1] === 0) {
-                                sortir = 0;
-                            } else {
-                                fantasmas[i][2] = direccio;
-                                sortir = 1;
+                                Fredireccio(i);
                             }
                             break;
                         case 3:
                             if (mapa[fantasmas[i][0]][(fantasmas[i][1]) + 1] === 0) {
-                                sortir = 0;
-                            } else {
-                                fantasmas[i][2] = direccio;
-                                sortir = 1;
+                                Fredireccio(i);
                             }
                             break;
                     }
 
-                } while (sortir === 0);
-
-            }
-
-            function comprovar(i) {
-
-                var direccio = fantasmas[i][2];
-                switch (direccio) {
-                    case 0:
-                        if (mapa[(fantasmas[i][0]) - 1][fantasmas[i][1]] === 0) {
-                            Fredireccio(i);
-                        }
-                        break;
-                    case 1:
-                        if (mapa[(fantasmas[i][0]) + 1][fantasmas[i][1]] === 0) {
-                            Fredireccio(i);
-                        }
-                        break;
-                    case 2:
-                        if (mapa[fantasmas[i][0]][(fantasmas[i][1]) - 1] === 0) {
-                            Fredireccio(i);
-                        }
-                        break;
-                    case 3:
-                        if (mapa[fantasmas[i][0]][(fantasmas[i][1]) + 1] === 0) {
-                            Fredireccio(i);
-                        }
-                        break;
                 }
+                ;
+                //movem els fantasmes pel mapa
+                function moureF() {
+                    for (var i = 0; i < fantasmas.length; i++) {
 
-            }
+                        var dir = fantasmas[i][2];
+                        switch (dir) {
+                            case 0:
+                                mapa[(fantasmas[i][0]) - 1][fantasmas[i][1]] = 'f';
+                                mapa[(fantasmas[i][0])][fantasmas[i][1]] = 1;
 
-            function moureF() {
-                for (var i = 0; i < fantasmas.length; i++) {
+                                fantasmas[i][0] = (fantasmas[i][0]) - 1;
 
-                    var dir = fantasmas[i][2];
-                    switch (dir) {
+
+                                break;
+                            case 1:
+                                mapa[(fantasmas[i][0]) + 1][fantasmas[i][1]] = 'f';
+                                mapa[(fantasmas[i][0])][fantasmas[i][1]] = 1;
+
+                                fantasmas[i][0] = (fantasmas[i][0]) + 1;
+
+                                break;
+                            case 2:
+                                mapa[fantasmas[i][0]][(fantasmas[i][1]) - 1] = 'f';
+                                mapa[(fantasmas[i][0])][fantasmas[i][1]] = 1;
+
+                                fantasmas[i][1] = (fantasmas[i][1]) - 1;
+
+                                break;
+                            case 3:
+                                mapa[fantasmas[i][0]][(fantasmas[i][1]) + 1] = 'f';
+                                mapa[(fantasmas[i][0])][fantasmas[i][1]] = 1;
+
+                                fantasmas[i][1] = (fantasmas[i][1]) + 1;
+
+                                break;
+                        }
+
+                    }
+                    FanCruilla();
+                }
+                ;
+
+
+                //moure el jugador automatic
+                function moureJ() {
+
+                    var dire = jugador[3];
+                    switch (dire) {
                         case 0:
-                            mapa[(fantasmas[i][0]) - 1][fantasmas[i][1]] = 'f';
-                            mapa[(fantasmas[i][0])][fantasmas[i][1]] = 1;
-
-                            fantasmas[i][0] = (fantasmas[i][0]) - 1;
-
+                            if (mapa[(jugador[0]) - 1][jugador[1]] !== 0) {
+                                jugador[2] = jugador[3];
+                            }
 
                             break;
                         case 1:
-                            mapa[(fantasmas[i][0]) + 1][fantasmas[i][1]] = 'f';
-                            mapa[(fantasmas[i][0])][fantasmas[i][1]] = 1;
-
-                            fantasmas[i][0] = (fantasmas[i][0]) + 1;
-
+                            if (mapa[(jugador[0]) + 1][jugador[1]] !== 0) {
+                                jugador[2] = jugador[3];
+                            }
                             break;
                         case 2:
-                            mapa[fantasmas[i][0]][(fantasmas[i][1]) - 1] = 'f';
-                            mapa[(fantasmas[i][0])][fantasmas[i][1]] = 1;
-
-                            fantasmas[i][1] = (fantasmas[i][1]) - 1;
-
+                            if (mapa[jugador[0]][jugador[1] - 1] !== 0) {
+                                jugador[2] = jugador[3];
+                            }
                             break;
                         case 3:
-                            mapa[fantasmas[i][0]][(fantasmas[i][1]) + 1] = 'f';
-                            mapa[(fantasmas[i][0])][fantasmas[i][1]] = 1;
+                            if (mapa[jugador[0]][jugador[1] + 1] !== 0) {
+                                jugador[2] = jugador[3];
+                            }
+                            break;
+                    }
+                    ;
+                    var dir = jugador[2];
+                    switch (dir) {
+                        case 0:
+                            if (mapa[(jugador[0]) - 1][jugador[1]] !== 0) {
+                                mapa[(jugador[0]) - 1][jugador[1]] = 'J';
+                                mapa[(jugador[0])][jugador[1]] = 1;
 
-                            fantasmas[i][1] = (fantasmas[i][1]) + 1;
+                                jugador[0] = (jugador[0]) - 1;
+                            }
 
+                            break;
+                        case 1:
+                            if (mapa[(jugador[0]) + 1][jugador[1]] !== 0) {
+                                mapa[(jugador[0]) + 1][jugador[1]] = 'J';
+                                mapa[jugador[0]][jugador[1]] = 1;
+
+                                jugador[0] = jugador[0] + 1;
+                            }
+                            break;
+                        case 2:
+                            if (mapa[jugador[0]][jugador[1] - 1] !== 0) {
+                                mapa[jugador[0]][jugador[1] - 1] = 'J';
+                                mapa[jugador[0]][jugador[1]] = 1;
+
+                                jugador[1] = jugador[1] - 1;
+                            }
+                            break;
+                        case 3:
+                            if (mapa[jugador[0]][jugador[1] + 1] !== 0) {
+                                mapa[jugador[0]][jugador[1] + 1] = 'J';
+                                mapa[jugador[0]][jugador[1]] = 1;
+
+                                jugador[1] = jugador[1] + 1;
+                            }
                             break;
                     }
 
+
                 }
-                FanCruilla();
-            }
-//moure el jugador automatic
-            function moureJ() {
+                ;
 
-                var dire = jugador[3];
-                switch (dire) {
-                    case 0:
-                        if (mapa[(jugador[0]) - 1][jugador[1]] !== 0) {
-                            jugador[2] = jugador[3];
+                //funcio de xocar
+                var xocat = 1;
+                var perdut = "<h1 style='color: red;'>HAS PERDUT!</h1>";
+                var guanyat = "<h1 style='color: green;'>HAS GUANYAT!</h1>";
+                function xoc() {
+                    for (var i = 0; i < fantasmas.length; i++) {
+
+                        if (fantasmas[i][0] === jugador[0] && fantasmas[i][1] === jugador[1]) {
+                            clearInterval(loop);
+                            xocat = 0;
+                            document.getElementById("partida").innerHTML = perdut;
+                            document.getElementById("cont").style.background = 'black';
+
+                            clearInterval(cronometro);
+                            preguntar2();
+
+
+                        } else if (mapa[fantasmas[i][0]][(fantasmas[i][1])] === "J") {
+                            clearInterval(loop);
+                            xocat = 0;
+
+                            document.getElementById("partida").innerHTML = perdut;
+                            document.getElementById("cont").style.background = 'black';
+
+                            clearInterval(cronometro);
+
+
                         }
 
-                        break;
-                    case 1:
-                        if (mapa[(jugador[0]) + 1][jugador[1]] !== 0) {
-                            jugador[2] = jugador[3];
-                        }
-                        break;
-                    case 2:
-                        if (mapa[jugador[0]][jugador[1] - 1] !== 0) {
-                            jugador[2] = jugador[3];
-                        }
-                        break;
-                    case 3:
-                        if (mapa[jugador[0]][jugador[1] + 1] !== 0) {
-                            jugador[2] = jugador[3];
-                        }
-                        break;
+                    }
                 }
-                var dir = jugador[2];
-                switch (dir) {
-                    case 0:
-                        if (mapa[(jugador[0]) - 1][jugador[1]] !== 0) {
-                            mapa[(jugador[0]) - 1][jugador[1]] = 'J';
-                            mapa[(jugador[0])][jugador[1]] = 1;
+                //funcio de agafar les tecles
+                ////0=amun  // 1= avall //  2=esquerra  //   3 =dreta
+                var element = document.getElementById("all");
+                element.addEventListener("keydown", teclas);
 
-                            jugador[0] = (jugador[0]) - 1;
-                        }
-
-                        break;
-                    case 1:
-                        if (mapa[(jugador[0]) + 1][jugador[1]] !== 0) {
-                            mapa[(jugador[0]) + 1][jugador[1]] = 'J';
-                            mapa[jugador[0]][jugador[1]] = 1;
-
-                            jugador[0] = jugador[0] + 1;
-                        }
-                        break;
-                    case 2:
-                        if (mapa[jugador[0]][jugador[1] - 1] !== 0) {
-                            mapa[jugador[0]][jugador[1] - 1] = 'J';
-                            mapa[jugador[0]][jugador[1]] = 1;
-
-                            jugador[1] = jugador[1] - 1;
-                        }
-                        break;
-                    case 3:
-                        if (mapa[jugador[0]][jugador[1] + 1] !== 0) {
-                            mapa[jugador[0]][jugador[1] + 1] = 'J';
-                            mapa[jugador[0]][jugador[1]] = 1;
-
-                            jugador[1] = jugador[1] + 1;
-                        }
-                        break;
-                }
-
-
-            }
-
-            //funcio de xocar
-            var xocat = 1;
-            var perdut="<h1 style='color: red;'>HAS PERDUT!</h1>";
-            function xoc() {
-                for (var i = 0; i < fantasmas.length; i++) {
-
-                    if (fantasmas[i][0] === jugador[0] && fantasmas[i][1] === jugador[1]) {
-                        clearInterval(loop);
-                        xocat = 0;
-                        document.getElementById("partida").innerHTML = perdut;
-                        
-                    } else if (mapa[fantasmas[i][0]][(fantasmas[i][1])] === "J") {
-                        clearInterval(loop);
-                        xocat = 0;
-                        
-                        document.getElementById("partida").innerHTML = perdut;
+                function teclas(e) {
+                    if (e.code === "ArrowLeft") {
+                        jugador[3] = 2;
+                    } else if (e.code === "ArrowRight") {
+                        jugador[3] = 3;
+                    } else if (e.code === "ArrowUp") {
+                        jugador[3] = 0;
+                    } else if (e.code === "ArrowDown") {
+                        jugador[3] = 1;
                     }
 
                 }
+
+                //cridem a la funcio del nostre cronometre.
+                var cronometro = setInterval(puntuacio, 1000);
+                //inicialitzem el crono a -1
+                var punt = -1;
+                //crono/puntuacio
+                function puntuacio() {
+                    punt++;
+                    document.getElementById("conta").innerHTML = "<h2>PUNTUACIO:</h2><br><br><h2 class='numero'>" + punt + "</h2>";
+                    if (punt === 300) {
+                        clearInterval(cronometro);
+                        clearInterval(loop);
+                        xocat = 0;
+                        document.getElementById("partida").innerHTML = guanyat;
+                        preguntar2();
+
+                    }
+                }
+                ;
+
+                //Crida de les funcions
+
+
+                Faleatori();
+                Jaleatori();
+                Fdireccio();
+                pintarweb();
+                pintar();
+                //loop repetitiu de moure jugador i fantasma i pitar la web (no esta posat en el mateix if perque si xocan ja no vull moure el fantasma o el jugador mes, sino no xocarien
+                var loop = setInterval(function () {
+                    if (xocat === 1) {
+                        moureJ();
+                        pintarweb();
+                        xoc();
+                    }
+
+                    if (xocat === 1) {
+                        moureF();
+
+                        pintarweb();
+                        xoc();
+                    }
+
+                }, 100);
+
+
             }
-            //funcio de agafa les tecles
-            ////0=amun  // 1= avall //  2=esquerra  //   3 =dreta
-            var element = document.getElementById("all");
-            element.addEventListener("keydown", teclas);
+            ;
 
-            function teclas(e) {
-                if (e.code === "ArrowLeft") {
-                    jugador[3] = 2;
-                } else if (e.code === "ArrowRight") {
-                    jugador[3] = 3;
-                } else if (e.code === "ArrowUp") {
-                    jugador[3] = 0;
-                } else if (e.code === "ArrowDown") {
-                    jugador[3] = 1;
+            //per saber si es vol seguir jugant
+            preguntar();
+            function preguntar() {
+                confirmar = confirm("Vols jugar?");
+                if (confirmar) {
+                    jugar();
+                } else {
+
+                    alert('Gracies per jugar!');
                 }
-
             }
+            ;
 
+            function preguntar2() {
+                confirmar = confirm("Vols tornar a jugar?");
+                if (confirmar) {
+                    jugar();
+                } else {
 
-
-            //CRIDEM AL MAPA PER LA WEB I PER LA CONSOLA
-
-
-            Faleatori();
-            Jaleatori();
-            Fdireccio();
-            pintarweb();
-            pintar();
-
-            var loop = setInterval(function () {
-                if (xocat === 1) {
-                    moureJ();
-                    pintarweb();
-                    xoc();
+                    alert('Gracies per jugar!');
                 }
-
-                if (xocat === 1) {
-                    moureF();
-
-                    pintarweb();
-                    xoc();
-                }
-            }, 200);
+            }
+            ;
 
         </script>
 
